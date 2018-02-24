@@ -10,7 +10,6 @@ if (!isset($access_token)) {
 if (is_null($access_token)) {
     $sfdc_tokens_json = getAccessTokenFromSFDC();
     $sfdc_tokens = json_decode($sfdc_tokens_json, true);
-    
     insNewAccounts();
 }
 
@@ -49,7 +48,7 @@ function insNewAccounts(){
     );
     
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $sfdc_token_request_endpoint);
+    curl_setopt($ch, CURLOPT_URL, $sfdc_endpoint);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $header_data);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $act_data);
