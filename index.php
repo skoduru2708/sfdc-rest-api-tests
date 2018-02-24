@@ -1,4 +1,7 @@
 <?php
+if(!isset($sfdc_tokens)){
+    $sfdc_tokens = array();
+}
 
 if (!isset($access_token)) {
     $access_token = null;
@@ -7,10 +10,8 @@ if (!isset($access_token)) {
 if (is_null($access_token)) {
     $sfdc_tokens_json = getAccessTokenFromSFDC();
     $sfdc_tokens = json_decode($sfdc_tokens_json, true);
-    print_r($sfdc_tokens);
     
-    echo "<br/>New line";
-    
+    insNewAccounts();
 }
 
 function getAccessTokenFromSFDC() {
@@ -35,4 +36,27 @@ function getAccessTokenFromSFDC() {
     return $output;
 }
 
+function insNewAccounts(){
+    $sfdc_endpoint = $sfdc_tokens['instance_url'] . 'services/data/v37.0/sobjects/Account/';
+
+    $header_data = array(
+        'Authorization' => 'Bearer ' . $sfdc_tokens['access_token'],
+        'Content-Type' => 'application/json'
+    );
+    
+    $act_data = array(
+        'Name' => 'Test Account on Feb-24-2018'
+    );
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $sfdc_token_request_endpoint);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header_data);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $act_data);
+    $output = curl_exec($ch);
+    $info = curl_getinfo($ch);
+    curl_close($ch);
+
+    print_r($output);
+}
 ?>
