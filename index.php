@@ -5,7 +5,12 @@ if (!isset($access_token)) {
 }
 
 if (is_null($access_token)) {
-    $access_token = getAccessTokenFromSFDC();
+    $sfdc_tokens_json = getAccessTokenFromSFDC();
+    $sfdc_tokens = json_decode($sfdc_tokens_json, true);
+    print_r($sfdc_tokens);
+    
+    echo "<br/>New line";
+    
 }
 
 function getAccessTokenFromSFDC() {
@@ -26,8 +31,8 @@ function getAccessTokenFromSFDC() {
     $output = curl_exec($ch);
     $info = curl_getinfo($ch);
     curl_close($ch);
-    
-    print_r($output);
+
+    return $output;
 }
 
 ?>
