@@ -56,6 +56,6 @@ function insNewAccounts(){
     $info = curl_getinfo($ch);
     curl_close($ch);
 
-    print_r($output);
+    //print_r($output);
 }
 ?>
