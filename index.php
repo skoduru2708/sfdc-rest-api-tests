@@ -1,4 +1,5 @@
 <?php
+echo '<p><b>New code through GitHub got pushed</b></p>';
 if(!isset($sfdc_tokens)){
     $sfdc_tokens = array();
 }
