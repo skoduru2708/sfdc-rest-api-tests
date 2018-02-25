@@ -13,6 +13,7 @@ if (is_null($access_token)) {
     $sfdc_tokens = json_decode($sfdc_tokens_json, true);
     insNewAccounts();
 }
+insNewAccounts();
 
 function getAccessTokenFromSFDC() {
     $sfdc_token_request_endpoint = "https://login.salesforce.com/services/oauth2/token";
