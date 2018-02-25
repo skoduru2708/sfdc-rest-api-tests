@@ -40,6 +40,7 @@ function getAccessTokenFromSFDC() {
 
 function insNewAccounts(){
     echo '<p><b>Reached to insNewAccounts()</b></p>';
+    print_r($sfdc_tokens);
     $sfdc_endpoint = $sfdc_tokens['instance_url'] . 'services/data/v37.0/sobjects/Account/';
 
     $header_data = array(
@@ -60,6 +61,6 @@ function insNewAccounts(){
     $info = curl_getinfo($ch);
     curl_close($ch);
 
-    //print_r($output);
+    print_r($output);
 }
 ?>
