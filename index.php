@@ -1,5 +1,5 @@
 <?php
-echo '<p><b>New code through GitHub got pushed</b></p>';
+
 if(!isset($sfdc_tokens)){
     $sfdc_tokens = array();
 }
@@ -16,6 +16,7 @@ if (is_null($access_token)) {
 insNewAccounts();
 
 function getAccessTokenFromSFDC() {
+   
     $sfdc_token_request_endpoint = "https://login.salesforce.com/services/oauth2/token";
 
     $data = array(
@@ -38,6 +39,7 @@ function getAccessTokenFromSFDC() {
 }
 
 function insNewAccounts(){
+    echo '<p><b>Reached to insNewAccounts()</b></p>';
     $sfdc_endpoint = $sfdc_tokens['instance_url'] . 'services/data/v37.0/sobjects/Account/';
 
     $header_data = array(
